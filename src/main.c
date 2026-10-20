@@ -15,8 +15,8 @@ int main(int argc, char *argv[]) {
     }
     char *mode = argv[1];
     if (strcmp(mode, "G") == 0) {
-        char *input = "";
-        char *output = "";
+        char *input = NULL;
+        char *output = NULL;
         char *algo = "md5";
 
         for (int i = 2; i < argc; i++) {
@@ -28,7 +28,27 @@ int main(int argc, char *argv[]) {
                 algo = argv[++i];
             }
         }
+
+        if (input == NULL || output == NULL) {
+            fprintf(stderr, "Erreur, les options -i et -o sont obligatoires\n");
+            return 1;
+        }
+    }else if (strcmp(mode, "L") == 0) {
+        char *t = NULL;
+
+        for (int i = 2; i < argc; i++) {
+            if ((strcmp(argv[i], "-t") == 0) || (strcmp(argv[i], "--table") == 0) && (i + 1 < argc)) {
+                t = argv[++i];
+            }
+        }
+        if (t == NULL) {
+            fprintf(stderr, "Erreur, l'option -t est obligatoire\n");
+            return 1;
+        }
+    }else {
+        fprintf(stderr, "Il y'a que deux modes G ou L\n");
     }
+
     return 0;
 
 }
