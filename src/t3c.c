@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "structure.h"
+#include "mode_g.c"
 
 int main(int argc, char *argv[]) {
     //faire une fonction pour ça ?
@@ -25,7 +26,7 @@ int main(int argc, char *argv[]) {
                 input = argv[++i];
             }else if ( (strcmp(argv[i], "-o") == 0) || (strcmp(argv[i], "--output") == 0) && (i + 1 < argc) ) {
                 output = argv[++i];
-            } else if ( (strcmp(argv[i], "-a") == 0 || strcmp(argv[i], "--algo") ) && (i + 1 < argc)) {
+            } else if ( (strcmp(argv[i], "-a") == 0 || strcmp(argv[i], "--algo")==0 ) && (i + 1 < argc)) {
                 algo = argv[++i];
             }
         }
@@ -34,6 +35,9 @@ int main(int argc, char *argv[]) {
             fprintf(stderr, "Erreur, les options -i et -o sont obligatoires\n");
             return 1;
         }
+
+        generate_t3c(input , output, algo);
+
     }else if (strcmp(mode, "L") == 0) {
         char *t = NULL;
 
