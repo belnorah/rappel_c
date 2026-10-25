@@ -21,16 +21,16 @@ void generate_t3c(char *input, char *output, char *algo) {
         exit(1);
     }
     char line[256];
-    unsigned char md5[MD5_DIGEST_LENGTH]; // Correction
+    unsigned char md5[MD5_DIGEST_LENGTH];
     while (fgets(line, sizeof(line), fin) != NULL) {
         line[strcspn(line, "\r\n")] = 0;
         MD5((unsigned char*)line, strlen(line), md5);
 
-        char hash_str[MD5_DIGEST_LENGTH * 2 + 1]; // Correction
-        for (int i = 0; i < MD5_DIGEST_LENGTH; i++) { // Correction
+        char hash_str[MD5_DIGEST_LENGTH * 2 + 1];
+        for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
             sprintf(&hash_str[i * 2], "%02x", (unsigned int)md5[i]);
         }
-        fprintf(fout, "%s\t%s\n", line, hash_str);
+        fprintf(fout, "%s:%s\n", hash_str, line);
     }
 
     fclose(fin);

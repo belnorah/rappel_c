@@ -8,6 +8,7 @@
 #include <string.h>
 #include "structure.h"
 #include "mode_g.c"
+#include "mode_l.c"
 
 int main(int argc, char *argv[]) {
     //faire une fonction pour ça ?
@@ -40,7 +41,6 @@ int main(int argc, char *argv[]) {
 
     }else if (strcmp(mode, "L") == 0) {
         char *t = NULL;
-
         for (int i = 2; i < argc; i++) {
             if ((strcmp(argv[i], "-t") == 0) || (strcmp(argv[i], "--table") == 0) && (i + 1 < argc)) {
                 t = argv[++i];
@@ -50,8 +50,12 @@ int main(int argc, char *argv[]) {
             fprintf(stderr, "Erreur, l'option -t est obligatoire\n");
             return 1;
         }
+        node_t3c *liste = charger(t);
+        recherche(liste);
+        free_liste(&liste);
     }else {
         fprintf(stderr, "Il y'a que deux modes G ou L\n");
+        return 1;
     }
 
     return 0;
