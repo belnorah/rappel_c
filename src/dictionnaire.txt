@@ -1,0 +1,10 @@
+bonjour
+2026norah
+mot_simple
+mot avec espaces
+  espaces au debut et a la fin  
+chaine:avec:des:deux:points
+accents_éàê_et_symboles_@!?
+1234567890
+mot_avec_une_	_tabulation
+Une phrase un peu plus longue pour s'assurer que le buffer de lecture de 512 octets encaisse bien la charge sans tronquer la chaîne de caractères.
